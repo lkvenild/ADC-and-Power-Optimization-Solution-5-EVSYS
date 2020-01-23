@@ -1,0 +1,307 @@
+format_version: '2'
+name: ADC and Power Optimization Solution 5 EVSYS
+versions:
+  api: '1.0'
+  backend: 1.7.279
+  commit: 1e07622763d149970fd8808a8f12ff3b1e84e0d7
+  content: unknown
+  content_pack_name: unknown
+  format: '2'
+  frontend: 1.7.279
+  packs_version_avr8: 1.0.1401
+  packs_version_qtouch: unknown
+  packs_version_sam: 1.0.1373
+  version_backend: 1.7.279
+  version_frontend: ''
+board:
+  identifier: ATtiny817XplainedPro
+  device: ATtiny817-MFR
+details: null
+application:
+  definition: 'Atmel:ADC_and_Power_Optimization:1.0.0::Application:ADC_and_Power_Optimization_Solution_5_EVSYS:'
+  configuration: null
+middlewares: {}
+drivers:
+  CLKCTRL:
+    user_label: CLKCTRL
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::CLKCTRL::driver_config_definition::CLKCTRL::Drivers:CLKCTRL:Init
+    functionality: System
+    api: Drivers:CLKCTRL:Init
+    configuration:
+      clkctrl_mclkctrla_cksel: 20MHz Internal Oscillator (OSC20M)
+      clkctrl_mclkctrla_clkout: false
+      clkctrl_mclkctrlb_pdiv: '4'
+      clkctrl_mclkctrlb_pen: true
+      clkctrl_mclklock_locken: false
+      clkctrl_osc16mctrla_runstdby: false
+      clkctrl_osc20mctrla_runstdby: false
+      clkctrl_osc32kctrla_runstdby: false
+      clkctrl_xosc32kctrla_csut: 1k cycles
+      clkctrl_xosc32kctrla_runstdby: false
+      clkctrl_xosc32kctrla_sel: false
+      cpu_clock_source: Main Clock (CLK_MAIN)
+      enable_clk_per: true
+      enable_extclk: true
+      enable_main: true
+      enable_osc16m: true
+      enable_osc20m: true
+      enable_osculp1k: true
+      enable_osculp32k: true
+      enable_tcd0: true
+      enable_xosc32kctrla: false
+      extosc: 32678
+      nvm_clock_source: Main Clock (CLK_MAIN)
+      osculp1k_clksel_clksel: 32KHz Internal Ultra Low Power Oscillator (OSCULP32K)
+      ram_clock_source: Main Clock (CLK_MAIN)
+      tcd0_ctrla_clksel: 20MHz Internal Oscillator (OSC20M)
+      tcd0_ctrla_syncpres: '1'
+      xosc32kctrla_arch_enable: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: CPU
+          input: CPU
+          external: false
+          external_frequency: 0
+        configuration: {}
+  RTC_0:
+    user_label: RTC_0
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::RTC::driver_config_definition::RTC::Drivers:RTC:Init
+    functionality: RTC
+    api: Drivers:RTC:Init
+    configuration:
+      enable_rtc: true
+      inc_isr_harness: true
+      rtc_clksel_clksel: 32KHz Internal Ultra Low Power Oscillator (OSCULP32K)
+      rtc_cmp: 0
+      rtc_cnt: 0
+      rtc_ctrla_prescaler: '32'
+      rtc_ctrla_rtcen: true
+      rtc_ctrla_runstdby: true
+      rtc_dbgctrl_dbgrun: false
+      rtc_intctrl_cmp: false
+      rtc_intctrl_ovf: false
+      rtc_per: 512
+      rtc_pitctrla_period: 'Off'
+      rtc_pitctrla_piten: false
+      rtc_pitdbgctrl_dbgrun: false
+      rtc_pitintctrl_pi: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: RTC
+          input: RTC Clock (CLK_RTC)
+          external: false
+          external_frequency: 0
+        configuration:
+          rtc_clock_source: RTC Clock (CLK_RTC)
+  ADC_0:
+    user_label: ADC_0
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::ADC0::driver_config_definition::ADC.Window::Drivers:ADC:Window
+    functionality: ADC
+    api: Drivers:ADC:Window
+    configuration:
+      adc_calib_dutycyc: 50% Duty cycle
+      adc_ctrla_enable: true
+      adc_ctrla_freerun: false
+      adc_ctrla_ressel: 8-bit mode
+      adc_ctrla_runstby: true
+      adc_ctrlb_sampnum: 1 ADC sample
+      adc_ctrlc_presc: CLK_PER divided by 8
+      adc_ctrlc_refsel: VDD
+      adc_ctrlc_sampcap: false
+      adc_ctrld_asdv: false
+      adc_ctrld_initdly: Delay 0 CLK_ADC cycles
+      adc_ctrld_sampdly: 0
+      adc_ctrle_wincm: Below Window
+      adc_dbgctrl_dbgrun: false
+      adc_evctrl_startei: true
+      adc_intctrl_resrdy: false
+      adc_intctrl_wcmp: true
+      adc_muxpos_muxpos: ADC input pin 10
+      adc_sampctrl_samplen: 0
+      adc_sampling_config: false
+      adc_winht: 0
+      adc_winlt: 80
+      inc_conversion_complete_irq: true
+      inc_window_irq: false
+    optional_signals:
+    - identifier: ADC_0:AIN/10
+      pad: PB1
+      mode: Enabled
+      configuration: null
+      definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::optional_signal_definition::ADC0.AIN.10
+      name: ADC0/AIN/10
+      label: AIN/10
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: ADC
+          input: Main Clock (CLK_MAIN)
+          external: false
+          external_frequency: 0
+        configuration:
+          adc_clock_source: Main Clock (CLK_MAIN)
+  USART_0:
+    user_label: USART_0
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::USART0::driver_config_definition::Async.Polled.Mode::Drivers:USART:Basic
+    functionality: USART
+    api: Drivers:USART:Basic
+    configuration:
+      baud_rate: 96000
+      ctrla_abeie: false
+      ctrla_dreie: false
+      ctrla_lbme: false
+      ctrla_rs485: RS485 Mode disabled
+      ctrla_rxcie: false
+      ctrla_rxsie: false
+      ctrla_txcie: false
+      ctrlb_mpcm: false
+      ctrlb_odme: false
+      ctrlb_rxen: false
+      ctrlb_rxmode: Normal mode
+      ctrlb_sfden: false
+      ctrlb_txen: true
+      ctrlc_chsize: 'Character size: 8 bit'
+      ctrlc_cmode: Asynchronous USART
+      ctrlc_pmode: No Parity
+      ctrlc_sbmode: 1 stop bit
+      ctrlc_ucpha: false
+      ctrlc_udord: false
+      dbgctrl_abmbp: false
+      dbgctrl_dbgrun: false
+      evctrl_irei: false
+      printf_support: false
+      rxplctrl_rxpl: 0
+      txplctrl_txpl: 0
+    optional_signals: []
+    variant:
+      specification: CMODE=0
+      required_signals:
+      - name: USART0/RXD
+        pad: PB3
+        label: RXD
+      - name: USART0/TXD
+        pad: PB2
+        label: TXD
+    clocks:
+      domain_group:
+        nodes:
+        - name: USART
+          input: Main Clock (CLK_MAIN)
+          external: false
+          external_frequency: 0
+        configuration:
+          usart_clock_source: Main Clock (CLK_MAIN)
+  EVENT_SYSTEM_0:
+    user_label: EVENT_SYSTEM_0
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::EVSYS::driver_config_definition::EVSYS::Drivers:EVSYS:Init
+    functionality: Event_System
+    api: Drivers:EVSYS:Init
+    configuration:
+      evsys_asyncch0_asyncch0: Real Time Counter overflow
+      evsys_asyncch1_asyncch1: 'Off'
+      evsys_asyncch2_asyncch2: 'Off'
+      evsys_asyncch3_asyncch3: 'Off'
+      evsys_asyncuser0_asyncuser0: 'Off'
+      evsys_asyncuser10_asyncuser10: 'Off'
+      evsys_asyncuser1_asyncuser1: Asynchronous Event Channel 0
+      evsys_asyncuser2_asyncuser2: 'Off'
+      evsys_asyncuser3_asyncuser3: 'Off'
+      evsys_asyncuser4_asyncuser4: 'Off'
+      evsys_asyncuser5_asyncuser5: 'Off'
+      evsys_asyncuser6_asyncuser6: 'Off'
+      evsys_asyncuser7_asyncuser7: 'Off'
+      evsys_asyncuser8_asyncuser8: 'Off'
+      evsys_asyncuser9_asyncuser9: 'Off'
+      evsys_syncch0_syncch0: 'Off'
+      evsys_syncch1_syncch1: 'Off'
+      evsys_syncuser0_syncuser0: 'Off'
+      evsys_syncuser1_syncuser1: 'Off'
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
+  CPUINT:
+    user_label: CPUINT
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::CPUINT::driver_config_definition::CPUINT::Drivers:CPUINT:Init
+    functionality: System
+    api: Drivers:CPUINT:Init
+    configuration:
+      cpuint_ctrla_cvt: false
+      cpuint_ctrla_ivsel: false
+      cpuint_ctrla_lvl0rr: false
+      cpuint_global_interrupt: true
+      cpuint_lvl0pri_lvl0pri: 0
+      cpuint_lvl1vec_lvl1vec: 0
+      inc_isr_harness: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
+  SLPCTRL:
+    user_label: SLPCTRL
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::SLPCTRL::driver_config_definition::SLPCTRL::Drivers:SLPCTRL:Init
+    functionality: System
+    api: Drivers:SLPCTRL:Init
+    configuration:
+      slpctrl_ctrla_sen: true
+      slpctrl_ctrla_smode: Standby Mode
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group: null
+  BOD:
+    user_label: BOD
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::BOD::driver_config_definition::BOD::Drivers:BOD:Init
+    functionality: System
+    api: Drivers:BOD:Init
+    configuration:
+      bod_ctrla_sleep: Disabled
+      bod_intctrl_vlmcfg: Interrupt when supply goes above VLM level
+      bod_intctrl_vlmie: false
+      bod_vlmctrla_vlmlvl: VLM threshold 5% above BOD level
+      inc_isr_harness: false
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: BOD
+          input: 32KHz divided by 32
+          external: false
+          external_frequency: 0
+        configuration:
+          bod_clock_source: 32KHz divided by 32
+pads:
+  PB3:
+    name: PB3
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::pad::PB3
+    mode: Digital input
+    user_label: PB3
+    configuration: null
+  PB2:
+    name: PB2
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::pad::PB2
+    mode: Digital output
+    user_label: PB2
+    configuration: null
+  PB1:
+    name: PB1
+    definition: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::pad::PB1
+    mode: Analog
+    user_label: PB1
+    configuration: null
+toolchain_options:
+- definition:
+    identifier: Atmel:ATtiny417_81x_161x_321x_drivers:1.0.0::ATtiny817-MFR::environment_definition::All:Atmel.Studio:7.0.0
+  configuration:
+    compiler_config:
+      avrgcc_compiler_miscellaneous_OtherFlags: -std=gnu99
+    linker_config:
+      avrgcc_linker_miscellaneous_LinkerFlags: ''
